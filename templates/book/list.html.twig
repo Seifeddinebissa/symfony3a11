@@ -1,0 +1,28 @@
+<h1 align='center'>List of Books</h1>
+
+<table border='1' align='center'>
+  <tr>
+    <th>Title</th>
+    <th>Publication date</th>
+    <th>Published</th>
+    <th>Category</th>
+    <th>Author</th>
+  </tr>
+  {%for book in books%}
+    {%if book.published == 1 %}
+        <tr>
+            <td>{{book.title}}</td>
+            <td>{{book.publicationDate|date('Y-m-d')}}</td>
+            <td>{{book.published}}</td>
+            <td>{{book.category}}</td>
+            <td>{{book.author.username}}</td>
+            <td> <a href="{{ path('app_book_delete',{'id':book.ref})}}">Delete</a><a href="{{ path('app_showBook',{'ref':book.ref})}}">Show</a></td>
+        </tr>
+    {%endif%}
+  {%endfor%}
+</table>
+<p align="center">Number of published books: {{pub}}</p>
+<p align="center">Number of unpublished books: {{notPub}}</p>
+<div style="text-align: center;">
+    <a href="{{ path('app_book_add')}}"><button type="button" style="margin-top:20px">Create new</button></a>
+</div>
